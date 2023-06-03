@@ -14,11 +14,11 @@ app_license = "Apache License Version 2.0"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/show_session/css/show_session.css"
-# app_include_js = "/assets/show_session/js/show_session.js"
+app_include_js = f"/assets/{app_name}/js/desk_navbar.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/show_session/css/show_session.css"
-# web_include_js = "/assets/show_session/js/show_session.js"
+web_include_js = f"/assets/{app_name}/js/set_first_login.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "show_session/public/scss/website"
