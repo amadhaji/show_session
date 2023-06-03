@@ -95,13 +95,11 @@ app_license = "Apache License Version 2.0"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Session Default Settings": {
+		"validate": f"{app_name}.utils.validate_one_in_navbar",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -188,3 +186,16 @@ user_data_fields = [
 #	"show_session.auth.validate"
 # ]
 
+fixtures = [{
+		"dt": "Custom Field",
+		"filters": [{
+			"name": ["in", [
+				"Session Default-show_dialog",
+				"Session Default-show_in_navbar",
+			]],
+		}],
+	},
+]
+
+
+boot_session = f"{app_name}.utils.boot_session"
