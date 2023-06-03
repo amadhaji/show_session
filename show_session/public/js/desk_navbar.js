@@ -8,6 +8,10 @@ frappe.provide('frappe.dom');
 
 class SessionNavbar {
 	constructor() {
+		if (! this.get_default_session_doctype()){
+			return;
+		}
+
 		if (frappe.desk == null) {
 			frappe.throw(__('Session Default can not be added outside Desk.'));
 			return;
