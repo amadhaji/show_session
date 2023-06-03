@@ -52,8 +52,17 @@ class SessionNavbar {
 	set_default_session() {
 		let default_session = this.get_default_session();
 		let show_dialog = this.get_show_dialog();
-		if (! default_session && localStorage.first_login && show_dialog) {
+
+		if (localStorage._show_session_first_login) {
 			localStorage.removeItem("_show_session_first_login");
+			if (show_dialog == "after_login"){
+				frappe.ui.toolbar.setup_session_defaults();
+			}
+			else if (show_dialog == "after_login_if_empty" && ! default_session){
+				frappe.ui.toolbar.setup_session_defaults();
+			}
+		}
+		if (! default_session && show_dialog == "after_refresh_if_empty"){
 			frappe.ui.toolbar.setup_session_defaults();
 		}
 	}

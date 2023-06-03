@@ -8,10 +8,6 @@ def validate_one_in_navbar(doc, method=None):
 	if len(exist) > 1:
 		frappe.throw(_("Only one session default is allowed to be shown in navbar"))
 
-	exist = list(filter(lambda i: not i.get("show_in_navbar") and i.get("show_dialog"), doc.session_defaults))
-	if len(exist) > 1:
-		frappe.throw(_("session default shown in navbar can have show dialog"))
-
 
 def boot_session(boot_info):
 	doc = frappe.get_single("Session Default Settings")
@@ -22,6 +18,6 @@ def boot_session(boot_info):
 
 	if show_in_navbar:
 		boot_info.show_session_in_navbar_doctype = show_in_navbar[0]["doctype"]
-		boot_info.show_session_dialog = show_in_navbar[0]["show_dialog"]
+		boot_info.show_session_dialog = frappe.scrub(show_in_navbar[0]["show_dialog"])
 
 	return boot_info
